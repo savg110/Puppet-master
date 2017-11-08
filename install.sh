@@ -25,4 +25,4 @@ echo "---Korvataan Puppetin oletus asetukset /etc/puppet hakemistossa, githubist
 sudo cp -TRv ./Puppet-master/puppet /etc/puppet
 
 echo "---Käynnistetään Puppetin init.pp, ja asennetaan SSH daemon---"
-sudo puppet apply /etc/puppet/manifests/init.pp
+sudo puppet apply /etc/puppet/manifests/modules/openssh/manifests/init.pp
