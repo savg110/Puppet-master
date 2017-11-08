@@ -7,6 +7,9 @@ echo "***************************"
 echo "---Suomenkielisen näppäimistön asettaminen---"
 setxkbmap fi
 
+echo "---Aikavyöhykkeen asettaminen Suomen aikaan---"
+sudo timedatectl set-timezone Europe/Helsinki
+
 echo "---Ohjelmisto päivitysten tarkistus ja asennus---"
 sudo apt-get update
 
