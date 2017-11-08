@@ -22,7 +22,7 @@ cd git
 git clone https://github.com/siavonen/Puppet-master/puppet.git
 
 echo "---Korvataan Puppetin oletus asetukset /etc/puppet hakemistossa, githubista saaduilla asetuksilla---"
-sudo cp -TRv ./Puppet-master/puppet /etc/puppet
+sudo cp -Rv ./Puppet-master/puppet /etc/puppet
 
 echo "---Käynnistetään Puppetin site.pp, ja asennetaan SSH daemon---"
-sudo puppet apply /etc/puppet/manifests/site.pp
+sudo puppet apply /etc/puppet/manifests/init.pp
