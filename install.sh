@@ -19,7 +19,7 @@ mkdir git
 
 echo "---Haetaan githubista asetukset---"
 cd git
-git clone https://github.com/siavonen/Puppet-master/puppet.git
+git clone https://github.com/siavonen/Puppet-master.git
 
 echo "---Korvataan Puppetin oletus asetukset /etc/puppet hakemistossa, githubista saaduilla asetuksilla---"
 sudo cp -Rv ./Puppet-master/puppet /etc/puppet
