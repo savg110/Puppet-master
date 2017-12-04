@@ -1,0 +1,3 @@
+The purpose of this script is to install tree and puppet on the slave computer with one line of command shown below.
+
+wget -O - https://raw.githubusercontent.com/siavonen/Puppet-master/master/Kali%20orja/install.sh | bash
