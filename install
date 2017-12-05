@@ -5,28 +5,26 @@ echo "Hello $USER"
 echo " "
 echo "***************************"
 
-echo "---Suomenkielisen näppäimistön asettaminen---"
+echo "--- Setting Finnish keyboard layout ---"
 setxkbmap fi
 
-echo "---Aikavyöhykkeen asettaminen Suomen aikaan---"
+echo "--- Setting Finnish timezone ---"
 sudo timedatectl set-timezone Europe/Helsinki
 
-echo "---Ohjelmisto päivitysten tarkistus ja asennus---"
+echo "--- Checking and getting updates ---"
 sudo apt-get update
 
-echo "---Asennetaan Git, Tree ja Puppet---"
-sudo apt-get install -y git tree puppet
+echo "--- Installing Git, Tree, Puppet and Puppetmaster ---"
+sudo apt-get install -y git tree puppet puppetmaster
 
-echo "---Luodaan git hakemisto käyttäjän koti hakemistoon---"
+echo "--- Creation of "git" directory in users "home" directory ---"
 cd /home/$(whoami)/
 mkdir git
 
-echo "---Haetaan githubista asetukset---"
+echo "--- Getting Puppetmaster settings from Github ---"
 cd git
 git clone https://github.com/siavonen/Puppet-master.git
 
-echo "---Korvataan Puppetin oletus asetukset /etc/puppet hakemistossa, githubista saaduilla asetuksilla---"
+echo "--- Replacing Puppet configurations in "/etc/puppet" directory with the ones gotten from Github ---"
 sudo cp -TRv ./Puppet-master/puppet/ /etc/puppet
 
-echo "---Käynnistetään Puppetin init.pp, ja asennetaan SSH daemon---"
-sudo puppet apply /etc/puppet/modules/openssh/manifests/init.pp
