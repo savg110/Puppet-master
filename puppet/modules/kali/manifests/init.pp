@@ -1,4 +1,4 @@
-class kali::myklass {
+class kali::kali {
   file {
     'kali':
       ensure => 'file',
