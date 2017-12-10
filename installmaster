@@ -28,3 +28,7 @@ git clone https://github.com/siavonen/Puppet-master.git
 echo "--- Replacing Puppet configurations in "/etc/puppet" directory with the ones gotten from Github ---"
 sudo cp -TRv ./Puppet-master/puppet/ /etc/puppet
 
+echo "--- Creating "installpuppet" command for all users ---"
+sudo cp .Puppet-master/Orja/installpuppet /usr/local/bin/
+cd /usr/local/bin/
+sudo chmod ugo+x installpuppet
