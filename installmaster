@@ -29,6 +29,7 @@ echo "--- Replacing Puppet configurations in "/etc/puppet" directory with the on
 sudo cp -TRv ./Puppet-master/puppet/ /etc/puppet
 
 echo "--- Creating "installpuppet" command for all users ---"
+cd git/Puppet-master
 sudo cp .Puppet-master/Orja/installpuppet /usr/local/bin/
 cd /usr/local/bin/
 sudo chmod ugo+x installpuppet
