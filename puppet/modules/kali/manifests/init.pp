@@ -4,12 +4,6 @@ class kali {
 	Package { ensure => 'latest', allowcdrom => true, }
 	Exec { path =>  [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ], }
 	
-	include apt
-
-	apt::source { "Kali_repository":
-        location        => "http://http.kali.org/kali",
-        release         => "The Kali Rolling Repository",
-	}
 
 	exec { 'export DEBIAN_FRONTEND=noninteractive': }
 	
