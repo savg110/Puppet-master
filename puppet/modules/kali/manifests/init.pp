@@ -1,6 +1,5 @@
 class kali {
 	File { owner => '0', group => '0', mode => '0644', }
-	Service { ensure => 'running', enable => true, }
 	Package { ensure => 'latest', allowcdrom => true, }
 	Exec { path =>  [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ], }
 	
