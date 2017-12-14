@@ -1,17 +1,12 @@
-class kali::kali {
-  file {
-    'kali':
-      ensure => 'file',
-      source => 'puppet:///modules/kali/manifests/kali.sh',
-      path => '/usr/local/bin/kali.sh',
-      owner => 'root'
-      group => 'root'
-      mode  => '0744', # Use 0700 if it is sensitive
-      notify => Exec['run_my_script'],
-  }
-  exec {
-    'run_my_script':
-     command => '/usr/local/bin/kali.sh',
-     refreshonly => true,
-  }
+class kali {
+	File { owner => '0', group => '0', mode => '0644', }
+	Package { ensure => 'latest', allowcdrom => true, }
+	Exec { path =>  [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ], }
+	
+
+	exec { 'export DEBIAN_FRONTEND=noninteractive': }
+	
+	package { 'kali-linux-full': }
+
+	
 }
