@@ -30,7 +30,7 @@ sudo cp -TRv ./Puppet-master/puppet/ /etc/puppet
 
 echo "--- Replacing local .bashrc file ---"
 cd
-rm .bashrc
+sudo rm .bashrc
 cp git/Puppet-master/puppet/modules/bashrc/templates/.bashrc ~/
 
 echo "--- Creating "installpuppet" command for all users ---"
