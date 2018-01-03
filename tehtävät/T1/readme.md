@@ -30,3 +30,4 @@ Tietolähteiden päivityksen, puppet ohjelmiston ja tree demonin asennusten jäl
 puppet --version
 ```
 
+![alt text]
