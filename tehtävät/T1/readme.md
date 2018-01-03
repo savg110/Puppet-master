@@ -32,7 +32,7 @@ puppet --version
 
 ![alt text](https://github.com/siavonen/Puppet-master/blob/master/teht%C3%A4v%C3%A4t/T1/pics/1.png?raw=true)
 
-## Manifest Ordering
+### Manifest Ordering
 
 Käytännössä tarkoittaa sitä että koodia luetaan ylhäältä alas ja tämä helpottaa huomattavasti koodin kirjottamista että sen lukemista. Tämä onnistuu kun muutetaan puppet ohjelmiston konfiguraatiota seuraavalla komennolla.
 
@@ -48,12 +48,37 @@ ordering = manifest
 
 ![alt text](https://github.com/siavonen/Puppet-master/blob/master/teht%C3%A4v%C3%A4t/T1/pics/2.png?raw=true)
 
+Muutosten jälkeen tallensin konfiguraation CTRL + X ja save changes Y
 
 
+### Puppet hakemistot ja niiden luominen
 
+Konfiguroinnin jälkeen loin manifest ja templates kansiot seuraavanlaisesti
 
+Navigoin puppet modules hakemistoon seuraavalla komennolla
 
+```
+cd /etc/puppet/modules
+```
 
+Loin modules hakemistoon "openssh" kansion seuraavalla komennolla
 
+```
+sudo mkdir openssh
+```
+
+Navigoin luomaani kansioon seuraavalla komennolla
+
+```
+cd openssh
+```
+
+Loin hakemistot manifests ja templates navigoimaani hakemistoon seuraavilla komennoilla
+
+```
+sudo mkdir manifests
+
+sudo mkdir templates
+```
 
 
