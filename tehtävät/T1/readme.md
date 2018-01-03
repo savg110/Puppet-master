@@ -30,4 +30,4 @@ Tietolähteiden päivityksen, puppet ohjelmiston ja tree demonin asennusten jäl
 puppet --version
 ```
 
-![alt text]
+![alt text](https://raw.githubusercontent.com/siavonen/Puppet-master/master/teht%C3%A4v%C3%A4t/T1/pics/Screenshot_2017-11-01_09-04-59.png)
