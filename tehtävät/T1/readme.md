@@ -132,7 +132,7 @@ Tämän jälkeen tallensin init.pp tiedoston painamalla CTRL + X ja save changes
 Luotuani tiedoston kopioin luodun ssh konfiguraation tiedoston ssh konfiguraatio tiedostoon seuraavalla komennolla.
 
 ```
-Sudo cp /etc/ssh/ssh_config /etc/puppet/modules/openssh/templates/
+sudo cp /etc/ssh/ssh_config /etc/puppet/modules/openssh/templates/
 ```
 
 ### SSH puppetin suorittaminen
@@ -156,20 +156,62 @@ Loin testi käyttäjän seuraavalla komennolla
 sudo adduser tester
 ```
 
+Annoin käyttäjälle vahvan salasanan strongpasswordgenerator.com sivuston generoiman salasanan.
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/teht%C3%A4v%C3%A4t/T1/pics/5.png?raw=true)
 
 
+Loin SSH yhteyden "tester" käyttäjätunnuksella seuraavalla komennolla.
 
+```
+ssh tester@localhost
+```
 
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/teht%C3%A4v%C3%A4t/T1/pics/6.png?raw=true)
 
+### Koodin jako Githubiin
 
+Kloonasin github reponi home hakemistoon seuraavalla komennolla.
 
+```
+git clone https://github.com/siavonen/Puppet-master.git
+```
 
+Kloonauksen jälkeen loin repo tiedostoon T1 hakemiston käyttäen komentoa mkdir
 
+```
+mkdir T1
+```
 
+Tämän jälkeen kopioin tuotokset puppet hakemistosta git repo hakemistoon seuraavalla komennolla
 
+```
+cp -r /etc/puppet/modules/openssh/ ~/Puppet-master/T1/
+```
 
+Kopioinnin jälkeen siirryin "puppet-master" hakemistoon ja puskin kopioidut tuotokset git hubiin. Käyttämäni komennot näkyvät alla syöttö järjestyksessä.
 
+```
+cd
 
+cd Puppet-master/
+
+git add * && git commit -m "init.pp update"
+
+git pull && git push
+```
+
+### Lähteet
+
+https://guichlyhessen.wordpress.com/2017/10/31/t1-puppetilla-shh-asennus-ja-testaus/
+
+http://terokarvinen.com/2013/hello-puppet-revisited-%E2%80%93-on-ubuntu-12-04-lts
+
+https://docs.puppet.com/puppet/3.8/lang_summary.html
+
+http://terokarvinen.com/2016/publish-your-project-with-github
+
+https://www.puppetcookbook.com/
 
 
 
