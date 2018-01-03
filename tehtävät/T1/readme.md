@@ -31,3 +31,29 @@ puppet --version
 ```
 
 ![alt text](https://github.com/siavonen/Puppet-master/blob/master/teht%C3%A4v%C3%A4t/T1/pics/1.png?raw=true)
+
+## Manifest Ordering
+
+Käytännössä tarkoittaa sitä että koodia luetaan ylhäältä alas ja tämä helpottaa huomattavasti koodin kirjottamista että sen lukemista. Tämä onnistuu kun muutetaan puppet ohjelmiston konfiguraatiota seuraavalla komennolla.
+
+```
+sudo nano /etc/puppet/puppet.conf
+```
+
+Konfiguraatio tiedostoon tulee kirjoittaa seuraavanlaisesti rivin 9 alapuolelle.
+
+```
+ordering = manifest
+```
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/teht%C3%A4v%C3%A4t/T1/pics/2.png?raw=true)
+
+
+
+
+
+
+
+
+
+
