@@ -81,4 +81,15 @@ sudo mkdir manifests
 sudo mkdir templates
 ```
 
+Luotuani hakemistot katselin niitä seuraavilla komennoilla
+
+```
+tree
+pwd
+ls
+```
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/teht%C3%A4v%C3%A4t/T1/pics/3.png?raw=true)
+
+## SSH puppet tiedoston luonti
 
