@@ -112,11 +112,11 @@ puppetmaster:~$ nano Huomenta
 
 Kirjoitin bash skriptin seuraavasti
 
-*date* tulostaa päivämäärän ja kellon ajan
+**date** tulostaa päivämäärän ja kellon ajan
 
-*ping* testaa yhteyden google.com:in välillä ja tulostaa kuinka monta pakettia hukattiin yhteydenotossa
+**ping** testaa yhteyden google.com:in välillä ja tulostaa kuinka monta pakettia hukattiin yhteydenotossa
 
-*facter* tarkistaa paikallisen IP osoitteen
+**facter** tarkistaa paikallisen IP osoitteen
 
 ```
 #!/bin/bash
@@ -136,26 +136,52 @@ Testasin skriptiä seuraavalla komennolla
 bash ./Huomenta
 ```
 
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H4/pics/8.png?raw=true)
 
+Testi onnistui ja halutut tulosteet tulivat näkyville.
 
+Testauksen jälkeen annoin skiptille suoritus oikeudet "chmod" komennolla seuraavasti
 
+```
+chmod ugo+x Huomenta
+```
 
+Jonka jälkeen testasin sen toimivuuden seuraavasti
 
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H4/pics/9.png?raw=true)
 
+Testauksen jälkeen siirsin oikeudet Huomenta tiedostoon "ls -l Huomenta" komennolla jonka jälkeen kopioin skripti tiedoston "/usr/local/bin" hakemistoon seuraavalla komennolla.
 
+```
+cp Huomenta /usr/local/bin/
+```
 
+Kopiointi ei onnistunut koska ei oikeudet riittänyt joten jouduin lisäämään "sudo" oikeudet siihen seuraavasti
 
+```
+sudo cp Huomenta /usr/local/bin/
+```
 
+Jonka jälkeen pyydettiin sudo salasanaa ja sen jälkeen kopiointi onnistui.
 
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H4/pics/10.png?raw=true)
 
+Tarkistin tiedoston kopioinnin seuraavalla komennolla
 
+```
+ls /usr/local/bin/
+```
 
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H4/pics/11.png?raw=true)
 
+Tiedoston kopiointi onnistui niinkuin pitikin jonka jälkeen testasin skriptin toiminnan koti hakemistossa komennolla "Huomenta".
 
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H4/pics/12.png?raw=true)
 
 
 
 
+Skriptin testaus onnistui koti hakemistossa.
 
 
 
@@ -175,67 +201,11 @@ bash ./Huomenta
 
 
 
+Lähteet
+http://terokarvinen.com/2017/aikataulu-linuxin-keskitetty-hallinta-3-op-vanha-ops-%E2%80%93-loppusyksy-2017-p5-puppet
 
+http://terokarvinen.com/2016/short-bash-prompt-export-ps1w
 
+https://www.videolan.org/support/faq.html
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+https://askubuntu.com/questions/815066/whats-the-difference-between-bashrc-and-etc-bash-bashrc
