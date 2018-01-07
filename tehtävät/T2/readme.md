@@ -411,6 +411,102 @@ cd /etc/puppet
 Loin puppet hakemistossa olevaan modules hakemistoon "hello/manifests"  hakemiston seuraavalla komennolla
 
 ```
-sudo [mkdir](https://www.linux.fi/wiki/Mkdir) -p modules/hello/manifests/
+sudo mkdir -p modules/hello/manifests/
 ```
+
+Hakemiston luotua loin "site.pp" tiedoston manifests hakemistoon (/etc/puppet/manifests/) seuraavalla komennolla
+
+```
+sudoedit manifests/site.pp
+```
+
+Luotuani tiedoston kirjoitin sinne "include hello" joka tarkoittaa, että orjalle välitetään "hello" kansiossa olevat moduulit
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/teht%C3%A4v%C3%A4t/T2/pics/16.png?raw=true)
+
+Tallensin CTRL + X, save cheanges? Y ja enter
+
+## Hello moduulin luonti
+
+helloworld moduulin luoti tapahtuu seuraavalla komennolla
+
+```
+sudoedit modules/hello/manifests/init.pp
+```
+
+luotuani tiedoston, syötän sinne seuraavan koodin joka luo väliaikais tiedoston orjalle ja sisällyttää seuraavan tekstin "Hello my agent"
+
+```
+class hello {
+	file { '/tmp/masterSpeaks':
+	content => "Hello my agent\n"
+	}
+}
+```
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/teht%C3%A4v%C3%A4t/T2/pics/17.png?raw=true)
+
+## Hakemistot näyttävät seuraavanlaiselta Tree demonin avulla
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/teht%C3%A4v%C3%A4t/T2/pics/18.png?raw=true)
+
+## Manifestin hakeminen orja koneella
+
+Luotujen manifestien hakeminen orja tietokoneella tapahtuu seuraavalla komennolla.
+
+```
+sudo puppet agent --test --verbose
+```
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/teht%C3%A4v%C3%A4t/T2/pics/19.png?raw=true)
+
+Manifestien haun jälkeen tarkistetaan, että se toimi oikein seuraavalla komennolla
+
+```
+cat /tmp/masterSpeaks
+```
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/teht%C3%A4v%C3%A4t/T2/pics/20.png?raw=true)
+
+## [Runinterval ja sen konfigurointi](https://ask.puppet.com/question/2451/how-do-you-change-the-runinterval/)
+
+Runinterval eli tiedostojen haku masterilta tapahtuu automaattisesti joka 1800 sekunti (3omin). Tämän voi muokata orja tietokoneessa /etc/puppet/puppet.conf tiedostosta seuraavanlaisesti
+
+Siirrytään hakemistoa muokkaamaan seuraavalla komennolla
+
+```
+sudoedit /etc/puppet/puppet.conf
+```
+
+Kirjoitetaan seuraava rivi [agent] konfiguraatioiden alapuolelle jotta saadaan tiedon haku sillä aikataululla kun halutaan.
+
+```
+runinterval = 10
+```
+
+jolloin orja hakee master tietokoneelta sille jaetut tiedostot joka 10 sekunti
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/teht%C3%A4v%C3%A4t/T2/pics/21.png?raw=true)
+
+Muutosten jälkeen CTRL + X, save changes? Y ja enter.
+
+Tallennettuani muutokset tarkistin että se on tallentunut oikein, seuraavalla komennolla
+
+```
+sudo puppet agent --configprint runinterval
+```
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/teht%C3%A4v%C3%A4t/T2/pics/22.png?raw=true)
+
+## Lähteet
+
+http://terokarvinen.com/2012/puppetmaster-on-ubuntu-12-04
+
+http://terokarvinen.com/2012/puppetmaster-on-ubuntu-12-04#comment-21939
+
+http://terokarvinen.com/2017/simpler-puppet-manifests-resource-defaults-and-manifest-ordering
+
+https://github.com/poponappi/essential-tools
+
+https://stackoverflow.com/questions/8488253/how-to-force-cp-to-overwrite-without-confirmation
 
