@@ -114,7 +114,7 @@ Vagrant.configure(2) do |config|
 end
 ```
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H3/pics/1.png?raw=true)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H3/pics/1.png)
 
 Syötettyäni skriptin tallensin CTRL + X ja save changes? Y ja enter
 
@@ -130,7 +130,7 @@ Virtuaalikoneiden luonti jokaiseen koneen kohdalla näytti tältä
 
 ## slave01
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H3/pics/2.png?raw=true)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H3/pics/2.png)
 
 
 
