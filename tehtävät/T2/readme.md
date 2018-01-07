@@ -204,3 +204,213 @@ Komentorivin tulosteiden perusteella näemme, että kaikki haluamani tapahtumat 
 Puppet asetuksia asentaessa AINA käytä "sudo" oikeuksia. Muulloin konfiguroinnit yms. eivät toimi siten kun niiden kuuluisi toimia.
 
 Luennolla käytyjen esimerkkien perusteella on parempi, että DNS asetukset asetetaan ennen muita asetuksia.
+
+
+## Koneen isäntänimen (hostname) vaihto
+
+Avasin uuden terminaalin ctrl + alt + t, ja annoin seuraavan komennon vaihtaakseni tietokoneen isäntänimen.
+
+```
+sudo hostnamectl set-hostname puppetmaster
+```
+
+puppetmasterin tilalle voi antaa minkä tahansa nimen koneelle.
+
+Nimen vaihdon jälkeen varmistin nimen vaihdoksen komennolla
+
+```
+hostname
+```
+
+Varmistuin nimen muutoksesta, terminaalin tulosteen perusteella.
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/teht%C3%A4v%C3%A4t/T2/pics/4.png?raw=true)
+
+
+## Hosts tiedoston muokkaus
+
+isäntänimen (hostname) muutoksen jälkeen tulee myös muokata muutos hosts tiedostoon jotta verkko ohjaus tapahtuu oikein.
+
+Avasin hosts tiedoston muokattavaksi seuraavalla komennolla, ja lisäsin tiedostoon "puppetmaster" nimikkeen jonka asetin aikaisemmin käyttäjänimen perään hosts tiedostossa.
+
+```
+sudoedit /etc/hosts
+```
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/teht%C3%A4v%C3%A4t/T2/pics/5.png?raw=true)
+
+Asetusten muokkauksen jälkeen testasin yhteyden saannin asettamaani "puppetmaster":iin seuraavalla komennolla. Rajasin "-c 4" komento lisäkkeellä testi tapahtuman neljään testiin jonka jälkeen testi loppuu.
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/teht%C3%A4v%C3%A4t/T2/pics/6.png?raw=true)
+
+Testin lopputuloksena huomaan yhteyden toimivan "puppetmaster" osoitteeseen.
+
+
+
+## [Avahi demoni](https://linux.die.net/man/1/avahi-browse)
+
+localhost nimen käyttöönotto (että yhteydenotto toimi toisesta koneesta lisäämällä nimen jälkeen ” puppetmaster.local” ) avahi-daemon on nimipalvelun määrittävä sovellus oletuksena asennettuna linux/mac käyttöjärjestelmiin.
+
+Jotta localhost nimen käyttöönotto tulee voimaan tulee käynistää avahi uudestaan, ja se tapahtuu seuraavalla komennolla.
+
+```
+sudo service avahi-daemon restart
+```
+
+Uudelleen käynistyksen jälkeen testasin yhteyden samalla tavalla kun aikaisemmin "puppetmaster" hostname testatessa.
+
+```
+ping -c 4 puppetmaster.local
+```
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/teht%C3%A4v%C3%A4t/T2/pics/7.png?raw=true)
+
+## Puppetmaster asennus
+
+Asensin puppetmasterin seuraavalla komennolla
+
+```
+sudo apt-get -y install puppetmaster
+```
+
+Asennuksen jälkeen tarkistin puppet ohjelman sertifikaatit seuraavalla komennolla
+
+```
+sudo ls /var/lib/puppet/ssl/certs
+```
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/teht%C3%A4v%C3%A4t/T2/pics/8.png?raw=true)
+
+Sertifikaatti listasta tarvitsen "puppetmaster.localdomain.pem" ja tarkistan sen DNS aseutkset seuraavalla komennolla.
+
+```
+sudo openssl x509 -in /var/lib/puppet/ssl/certs/puppetmaster.localdomain.pem -text|less
+```
+
+Rivillä "X509v3 Subject Alternative Name" käy ilmi, että DNS asetukset eivät ole asettuneet täysin oikein sertifikaattiin. Se tulee poistaa jotta vältytään puppetmaster ja puppetin välillä.
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/teht%C3%A4v%C3%A4t/T2/pics/9.png?raw=true)
+
+## [Grep komennolla etsiminen](https://people.uta.fi/~jm58660/jutut/unix/grep.html)
+
+Grep komennon avulla voimme helposti ja kätevesti tarkistaa juuri sen rivin tiedot mitä haluamme katsella ja se tapahtuu seuraavalla komennolla.
+
+```
+sudo openssl x509 -in /var/lib/puppet/ssl/certs/puppetmaster.localdomain.pem -text|grep -i DNS
+```
+
+Lopputulos on seuraavanlainen
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/teht%C3%A4v%C3%A4t/T2/pics/10.png?raw=true)
+
+## Virheellisten sertifikaattien poisto ja uusien konfigurointi
+
+### HUOMIOI!
+
+Sertifikaatteja EI saa poistaa kun on luotu yhteys orja koneeseen. Se luo yhteydenluonti ongelmia, luottamus syistä.
+
+
+
+Ensiksi tulee pysäyttää puppetmaster ohjelma jotta sertifikaatteja voi muokata, ja se tapahtuu seuraavalla komennolla.
+
+```
+sudo service puppetmaster stop
+```
+
+Pysäytettyäni puppetmaster ohjelman, editoidaan puppet ohjelmiston konfiguraatio seuraavalla komennolla.
+
+```
+sudoedit /etc/puppet/puppet.conf
+```
+
+edirotin auettua kirjoitetaan seuraava rivi [master] konfigurointien alle ilmoitetaan DNS nimitykset jotka tässä tapauksessa ovat "puppetmaster" ja "puppetmaster.local"
+
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/teht%C3%A4v%C3%A4t/T2/pics/11.png?raw=true)
+
+Muutosten jälkeen tallensin ctrl + x, save modified buffer? Y, enter.
+
+
+Konfiguraatio muutosten jälkeen siirryin poistamaan virheellisen sertifikaatin.
+
+__Huomioi että sertifikaatteja poistaessa kaikki puppetin sertifikaatit tulee poistaa!__
+
+Näin ollen poistin setifikaatteja sisältävän tiedoston sisältöineen seuraavalla komennolla.
+
+```
+sudo rm -r /var/lib/puppet/ssl/
+```
+
+Poiston jälkeen käynnistetään puppetmaster jotta se generoisi uudet ja toimivat sertifikaatit. Käynnistys tapahtuu seuraavalla komennolla.
+
+```
+sudo service puppetmaster start
+```
+
+Käynnistettyä puppetmasterin voin tarkistaa DNS asetusten oikeellisuuden sertifikaatista aikaisemmin mainitulla "grep" komennolla.
+
+```
+sudo openssl x509 -in /var/lib/puppet/ssl/certs/puppetmaster.localdomain.pem -text|grep -i DNS
+```
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/teht%C3%A4v%C3%A4t/T2/pics/12.png?raw=true)
+
+grep komennon tulosteen avulla näen että DNS asetukset ovat asettuneet oikein sertifikaattiin.
+
+## Orja koneen konfigurointi
+
+Ensiksi asensin puppet ohjelmiston komennolla
+
+```
+sudo apt-get -y install puppet
+```
+
+Asennettua puppet ohjelmiston, muokataan sen konfigurointi seuraavalla komennolla.
+
+```
+sudoedit /etc/puppet/puppet.conf
+```
+
+Konfiguraatioiden alapuolelle määritetään [agent] asetukset jossa määritellään master tietokoneen tiedot johon orja yhdistäytyy.
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/teht%C3%A4v%C3%A4t/T2/pics/13.png?raw=true)
+
+Orjakoneen käyttöönotto jokaisella orjakoneella tapahtuu seuraavalla komennolla
+
+```
+sudo puppet agent --enable
+
+sudo puppet agent --test
+```
+
+## Orjakoneen lisääminen masterkoneessa
+
+Orjakoneet jotka haluavat kuulua orja verkostoon näkyvät sertifikaatti listalla jonka saadaan näkyviin seuraavalla komennolla.
+
+```
+sudo puppet cert --list
+```
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/teht%C3%A4v%C3%A4t/T2/pics/14.png?raw=true)
+
+Listattua sertifikaatit huomasin että slave01 kone tuli näkyviin ja hyväksyin sen orjaksi verkostooni seuraavalla komennolla.
+
+```
+sudo puppet cert --sign slave01
+```
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/teht%C3%A4v%C3%A4t/T2/pics/15.png?raw=true)
+
+## Koneiden välisen yhteyden testaaminen
+
+Siirryin puppet hakemistoon seuraavalla komennolla
+
+```
+cd /etc/puppet
+```
+
+Loin puppet hakemistossa olevaan modules hakemistoon "hello/manifests"  hakemiston seuraavalla komennolla
+
+```
+sudo [mkdir](https://www.linux.fi/wiki/Mkdir) -p modules/hello/manifests/
+```
+
