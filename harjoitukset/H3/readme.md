@@ -75,9 +75,13 @@ nano Vagrantfile
 Avattuani "Vagrantfile" tiedoston poistin sen sisällön CTRL + K pohjassa pitämällä. Tämän jälkeen liitin tiedostoon alla olevan skriptin.
 
 [set -o -v](https://www.computerhope.com/unix/uset.htm) tulostaa käytettyjä komentoja kun niitä ajetaan.
+
 [||](https://unix.stackexchange.com/questions/24684/confusing-use-of-and-operators) “joko tai”  yritää suorittaa komentoja niiden anto järjestyksessä mikäli edellinen ei onnistunut.
+
 [“echo -e”](https://www.computerhope.com/unix/uecho.htm) echo tulostaa tekstiä terminaaliin ja -e sallii \ \n \* käytön komennossa.
+
 [“tee -a”](https://www.computerhope.com/unix/utee.htm) komennot lukee T mäisesti tässä tapauksessa vasemmalta tekstin joka on luotu echo:lla ja kopioi sen määrättyyn tiedostoon “-a” estää ylikirjoituksen.
+
 [grep “^”](https://www.computerhope.com/unix/ugrep.htm) etsii tekstiä missä tahansa rivillä, joka on ensimmäisenä rivillä.
 
 Alla oleva skripti on [Tero Karvisen](http://terokarvinen.com/2017/provision-multiple-virtual-puppet-slaves-with-vagrant) luoma skripti joka on muokattu tämän tehtävän ratkaisua varten
@@ -114,7 +118,7 @@ Vagrant.configure(2) do |config|
 end
 ```
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H3/pics/1.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H3/pics/1.png?raw=true)
 
 Syötettyäni skriptin tallensin CTRL + X ja save changes? Y ja enter
 
@@ -130,7 +134,7 @@ Virtuaalikoneiden luonti jokaiseen koneen kohdalla näytti tältä
 
 ## slave01
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H3/pics/2.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H3/pics/2.png?raw=true)
 
 
 
