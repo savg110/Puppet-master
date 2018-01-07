@@ -7,7 +7,7 @@ b) Kokeile Puppetin master-slave arkkitehtuuria kahdella koneella. Liitä raport
 # Vastaus
 
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T2/pics/1.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T2/pics/1.png?raw=true)
 
 
 ```
