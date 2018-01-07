@@ -32,7 +32,7 @@ Katselin etistä esimerkkejä käyttäjän asetuksia muuttaessa .bashrc tiedosto
 ls -a
 ```
 
-
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H4/pics/1.png?raw=true)
 
 
 
