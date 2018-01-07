@@ -30,7 +30,7 @@ Tietolähteiden päivityksen, puppet ohjelmiston ja tree demonin asennusten jäl
 puppet --version
 ```
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T1/pics/1.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T1/pics/1.png?raw=true)
 
 ### Manifest Ordering
 
@@ -46,7 +46,7 @@ Konfiguraatio tiedostoon tulee kirjoittaa seuraavanlaisesti rivin 9 alapuolelle.
 ordering = manifest
 ```
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T1/pics/2.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T1/pics/2.png?raw=true)
 
 Muutosten jälkeen tallensin konfiguraation CTRL + X ja save changes Y
 
@@ -89,7 +89,7 @@ pwd
 ls
 ```
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T1/pics/3.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T1/pics/3.png?raw=true)
 
 ### SSH puppet tiedoston luonti
 
@@ -146,7 +146,7 @@ sudo puppet apply -e 'class {'openssh':}'
 ```
 
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T1/pics/4.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T1/pics/4.png?raw=true)
 
 ### SSH yhteyden testaus
 
@@ -158,7 +158,7 @@ sudo adduser tester
 
 Annoin käyttäjälle vahvan salasanan strongpasswordgenerator.com sivuston generoiman salasanan.
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T1/pics/5.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T1/pics/5.png?raw=true)
 
 
 Loin SSH yhteyden "tester" käyttäjätunnuksella seuraavalla komennolla.
@@ -167,7 +167,7 @@ Loin SSH yhteyden "tester" käyttäjätunnuksella seuraavalla komennolla.
 ssh tester@localhost
 ```
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T1/pics/6.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T1/pics/6.png?raw=true)
 
 ### Koodin jako Githubiin
 
