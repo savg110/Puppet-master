@@ -200,8 +200,8 @@ Skriptin testaus onnistui koti hakemistossa.
 
 
 
+## Lähteet
 
-Lähteet
 http://terokarvinen.com/2017/aikataulu-linuxin-keskitetty-hallinta-3-op-vanha-ops-%E2%80%93-loppusyksy-2017-p5-puppet
 
 http://terokarvinen.com/2016/short-bash-prompt-export-ps1w
