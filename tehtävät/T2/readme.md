@@ -16,3 +16,14 @@ sudo tail -5 /var/log/puppet/masterhttp.log
 
 # Tietokoneen tiedot
 
+Laitteen nimi: Asus GL752VW
+
+Suoritin: Intel Core i7-6400 HQ CP
+
+Näytönohjain: nVidia GeForce GTX 960M 2 Gt
+
+RAM: 8GB
+
+Kiintolevy: 512 Gt SSD
+
+[xubuntu-16.04.3](http://nl.archive.ubuntu.com/ubuntu-cdimage-xubuntu/releases/16.04/release/xubuntu-16.04.3-desktop-amd64.iso) Virtuaaliympäristössä VMware® Workstation 12 Pro
