@@ -136,6 +136,166 @@ Virtuaalikoneiden luonti jokaiseen koneen kohdalla näytti tältä
 
 ![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H3/pics/2.png?raw=true)
 
+## slave02
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H3/pics/3.png?raw=true)
+
+## slave03
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H3/pics/4.png?raw=true)
+
+# Slave01 koneen testaus
+
+Otin yhteyden "slave01" virtuaali koneeseen seuraavalla komennolla
+
+```
+vagrant ssh slave01
+```
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H3/pics/5.png?raw=true)
+
+SSH yhteys onnistui
+
+## Sertifikaattien hyväksyttäminen
+
+Tarkistin orja koneiden sertifikaatit ja hyväksyin ne seuraavilla komennoilla
+
+```
+sudo puppet cert --list
+
+sudo puppet cert --sign -a
+```
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H3/pics/6.png?raw=true)
+
+## Uusi puppet moduuli ja sen testaus
+
+Loin uuden moduuli hakemiston seuraavalla komennolla
+
+```
+sudo mkdir /etc/puppet/modules/tree/manifests
+```
+
+jonka jälkeen loin manifests kansioon "init.pp" tiedoston jonne syötin uuden moduulin, seuraavalla komennolla ja se näytti seuraavanlaiselta
+
+```
+sudoedit /etc/puppet/modules/tree/manifests/init.pp
+```
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H3/pics/7.png?raw=true)
+
+Tallensin tiedoston CTRL + X ja save changes Y ja enter
+
+## Site.pp tiedostoon node lisäys
+
+site.pp tiedoston muokkaus tapahtuu seuraavalla komennolla
+
+```
+sudoedit /etc/puppet/manifests/site.pp
+```
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H3/pics/8.png?raw=true)
+
+Tallensin muutokset CTRL + X, save changes? Y ja enter
+
+## Testaus
+
+Testasin site.pp määritystä "slave01" orja koneessa seuraavilla komennoilla
+
+```
+sudo puppet agent --test --verbose
+
+cat /tmp/tree
+```
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H3/pics/9.png?raw=true)
+
+Testi onnistui, tree demoni on asentunut "slave01" orja koneelle ja ohjeistukset siitä on myös mennyt perille.
+
+## MAC osoitteiden katselu
+
+Puppetin orjien mac osoitteita voi tarkastella seuraavasta hakemistosta "/var/lib/puppet/yaml/node" mutta siihen tarvitaan sudo oikeudet jotta niitä voi tarkastella. Ensiksi katsoin mitä tiedostoja hakemistossa on jonka jälkeen tarkistin virtuaali orjien mac osoitteet ja kohdistin tarkistuksen "mac" sanaa sisältäviin riveihin. Tämä tapahtui seuraavilla komennoilla.
+
+```
+sudo ls /var/lib/puppet/yaml/node
+
+sudo grep -i mac /var/lib/puppet/yaml/node/slave01.yaml
+```
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H3/pics/10.png?raw=true)
+
+Yllä olevassa kuvakaappauksessa näkyy virtuaali koneiden mac osoitteet. Ne ovat samat koska ne ovat saman virtuaali ohjelmiston alaisena ja näin ollen ne pyörivät samassa mac ympäristössä.
+
+Tarkistin puppetmaster rautaorjan mac osoitteen, saman kaltaisesti kun virtuaalikoneiden mac osoitteita tarkistaessa.
+
+```
+sudo grep -i mac /var/lib/puppet/yaml/node/puppetmaster.yaml
+```
+
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H3/pics/11.png?raw=true)
+
+## Lähteet
+http://terokarvinen.com/2017/aikataulu-linuxin-keskitetty-hallinta-3-op-vanha-ops-%E2%80%93-loppusyksy-2017-p5-puppet
+
+http://terokarvinen.com/2017/provision-multiple-virtual-puppet-slaves-with-vagrant
+
+http://terokarvinen.com/2017/multiple-virtual-computers-in-minutes-vagrant-multimachine
+
+https://www.vagrantup.com/docs/vagrantfile/tips.html
+
+https://en.wikipedia.org/wiki/Here_document#Unix_shells
+
+https://stackoverflow.com/questions/2500436/how-does-cat-eof-work-in-bash
+
+https://guichlyhessen.wordpress.com/2017/11/15/t3-vagrantilla-slave-koneiden-konfigurointia/
+
+### Kommenot
+https://unix.stackexchange.com/questions/24684/confusing-use-of-and-operators
+
+https://www.computerhope.com/unix/uset.htm
+
+https://www.computerhope.com/unix/uecho.htm
+
+https://www.computerhope.com/unix/utee.htm
+
+https://www.computerhope.com/unix/ugrep.htm
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
