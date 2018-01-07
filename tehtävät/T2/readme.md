@@ -186,13 +186,13 @@ Skriptin tapahtumia on helppo seurata kommenttien avulla.
 Skriptin muutokset ovat seuraavanlaiset ja tässä järjestyksessä:
 
 	1. Näppäimistöpohjan vaihtaminen Suomenkieliseen
-	1. Aikavyöhykkeen vaihto Suomen aikavyöhykkeesee
-	1. Ohjelmistopäivityksen tarkistus ja asennus
-	1. Git, Tree ja Puppet ohjelmien asennus
-	1. "Git" hakemisto luodaan käyttäjän koti hakemistoon
-	1. Haetaan githubista asetukset
-	1. Korvataan "puppet" ohjelmiston asetukset githubista saaduilla
-	1. Käynnistetään init.pp jolla SSH daemonin asetukset asentuvat
+	2. Aikavyöhykkeen vaihto Suomen aikavyöhykkeesee
+	3. Ohjelmistopäivityksen tarkistus ja asennus
+	4. Git, Tree ja Puppet ohjelmien asennus
+	5. "Git" hakemisto luodaan käyttäjän koti hakemistoon
+	6. Haetaan githubista asetukset
+	7. Korvataan "puppet" ohjelmiston asetukset githubista saaduilla
+	8. Käynnistetään init.pp jolla SSH daemonin asetukset asentuvat
 
 Komentorivin tulosteiden perusteella näemme, että kaikki haluamani tapahtumat ovat menneet onnistuneesti läpi.
 
