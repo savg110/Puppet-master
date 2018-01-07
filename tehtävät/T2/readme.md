@@ -197,9 +197,9 @@ Skriptin muutokset ovat seuraavanlaiset ja tässä järjestyksessä:
 Komentorivin tulosteiden perusteella näemme, että kaikki haluamani tapahtumat ovat menneet onnistuneesti läpi.
 
 
-##B)
+## B)
 
-###Huomioi!
+### Huomioi!
 
 Puppet asetuksia asentaessa AINA käytä "sudo" oikeuksia. Muulloin konfiguroinnit yms. eivät toimi siten kun niiden kuuluisi toimia.
 
