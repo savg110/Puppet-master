@@ -7,14 +7,14 @@ b) Kokeile Puppetin master-slave arkkitehtuuria kahdella koneella. Liitä raport
 # Vastaus
 
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T2/pics/1.png?raw=true)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H2/pics/1.png?raw=true)
 
 
 ```
 sudo tail -5 /var/log/puppet/masterhttp.log
 ```
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T2/pics/2.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H2/pics/2.png?raw=true)
 
 # Tietokoneen tiedot
 
@@ -71,7 +71,7 @@ echo "---Käynnistetään Puppetin site.pp, ja asennetaan SSH daemon---"
 sudo puppet apply /etc/puppet/manifests/init.pp
 ```
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T2/pics/3.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H2/pics/3.png?raw=true)
 
 Puppetin asetusten korvaus komennossa käytin "cp -Rv" komentoa jotta tiedostojen päälle voidaan kirjoittaa githubista haetut tiedostot.
 
@@ -226,7 +226,7 @@ hostname
 
 Varmistuin nimen muutoksesta, terminaalin tulosteen perusteella.
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T2/pics/4.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H2/pics/4.png?raw=true)
 
 
 ## Hosts tiedoston muokkaus
@@ -238,11 +238,11 @@ Avasin hosts tiedoston muokattavaksi seuraavalla komennolla, ja lisäsin tiedost
 ```
 sudoedit /etc/hosts
 ```
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T2/pics/5.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H2/pics/5.png?raw=true)
 
 Asetusten muokkauksen jälkeen testasin yhteyden saannin asettamaani "puppetmaster":iin seuraavalla komennolla. Rajasin "-c 4" komento lisäkkeellä testi tapahtuman neljään testiin jonka jälkeen testi loppuu.
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T2/pics/6.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H2/pics/6.png?raw=true)
 
 Testin lopputuloksena huomaan yhteyden toimivan "puppetmaster" osoitteeseen.
 
@@ -264,7 +264,7 @@ Uudelleen käynistyksen jälkeen testasin yhteyden samalla tavalla kun aikaisemm
 ping -c 4 puppetmaster.local
 ```
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T2/pics/7.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H2/pics/7.png?raw=true)
 
 ## Puppetmaster asennus
 
@@ -280,7 +280,7 @@ Asennuksen jälkeen tarkistin puppet ohjelman sertifikaatit seuraavalla komennol
 sudo ls /var/lib/puppet/ssl/certs
 ```
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T2/pics/8.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H2/pics/8.png?raw=true)
 
 Sertifikaatti listasta tarvitsen "puppetmaster.localdomain.pem" ja tarkistan sen DNS aseutkset seuraavalla komennolla.
 
@@ -290,7 +290,7 @@ sudo openssl x509 -in /var/lib/puppet/ssl/certs/puppetmaster.localdomain.pem -te
 
 Rivillä "X509v3 Subject Alternative Name" käy ilmi, että DNS asetukset eivät ole asettuneet täysin oikein sertifikaattiin. Se tulee poistaa jotta vältytään puppetmaster ja puppetin välillä.
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T2/pics/9.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H2/pics/9.png?raw=true)
 
 ## [Grep komennolla etsiminen](https://people.uta.fi/~jm58660/jutut/unix/grep.html)
 
@@ -302,7 +302,7 @@ sudo openssl x509 -in /var/lib/puppet/ssl/certs/puppetmaster.localdomain.pem -te
 
 Lopputulos on seuraavanlainen
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T2/pics/10.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H2/pics/10.png?raw=true)
 
 ## Virheellisten sertifikaattien poisto ja uusien konfigurointi
 
@@ -327,7 +327,7 @@ sudoedit /etc/puppet/puppet.conf
 edirotin auettua kirjoitetaan seuraava rivi [master] konfigurointien alle ilmoitetaan DNS nimitykset jotka tässä tapauksessa ovat "puppetmaster" ja "puppetmaster.local"
 
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T2/pics/11.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H2/pics/11.png?raw=true)
 
 Muutosten jälkeen tallensin ctrl + x, save modified buffer? Y, enter.
 
@@ -354,7 +354,7 @@ Käynnistettyä puppetmasterin voin tarkistaa DNS asetusten oikeellisuuden serti
 sudo openssl x509 -in /var/lib/puppet/ssl/certs/puppetmaster.localdomain.pem -text|grep -i DNS
 ```
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T2/pics/12.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H2/pics/12.png?raw=true)
 
 grep komennon tulosteen avulla näen että DNS asetukset ovat asettuneet oikein sertifikaattiin.
 
@@ -374,7 +374,7 @@ sudoedit /etc/puppet/puppet.conf
 
 Konfiguraatioiden alapuolelle määritetään [agent] asetukset jossa määritellään master tietokoneen tiedot johon orja yhdistäytyy.
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T2/pics/13.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H2/pics/13.png?raw=true)
 
 Orjakoneen käyttöönotto jokaisella orjakoneella tapahtuu seuraavalla komennolla
 
@@ -392,7 +392,7 @@ Orjakoneet jotka haluavat kuulua orja verkostoon näkyvät sertifikaatti listall
 sudo puppet cert --list
 ```
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T2/pics/14.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H2/pics/14.png?raw=true)
 
 Listattua sertifikaatit huomasin että slave01 kone tuli näkyviin ja hyväksyin sen orjaksi verkostooni seuraavalla komennolla.
 
@@ -400,7 +400,7 @@ Listattua sertifikaatit huomasin että slave01 kone tuli näkyviin ja hyväksyin
 sudo puppet cert --sign slave01
 ```
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T2/pics/15.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H2/pics/15.png?raw=true)
 
 ## Koneiden välisen yhteyden testaaminen
 
@@ -424,7 +424,7 @@ sudoedit manifests/site.pp
 
 Luotuani tiedoston kirjoitin sinne "include hello" joka tarkoittaa, että orjalle välitetään "hello" kansiossa olevat moduulit
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T2/pics/16.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H2/pics/16.png?raw=true)
 
 Tallensin CTRL + X, save cheanges? Y ja enter
 
@@ -446,11 +446,11 @@ class hello {
 }
 ```
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T2/pics/17.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H2/pics/17.png?raw=true)
 
 ## Hakemistot näyttävät seuraavanlaiselta Tree demonin avulla
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T2/pics/18.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H2/pics/18.png?raw=true)
 
 ## Manifestin hakeminen orja koneella
 
@@ -460,7 +460,7 @@ Luotujen manifestien hakeminen orja tietokoneella tapahtuu seuraavalla komennoll
 sudo puppet agent --test --verbose
 ```
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T2/pics/19.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H2/pics/19.png?raw=true)
 
 Manifestien haun jälkeen tarkistetaan, että se toimi oikein seuraavalla komennolla
 
@@ -468,7 +468,7 @@ Manifestien haun jälkeen tarkistetaan, että se toimi oikein seuraavalla komenn
 cat /tmp/masterSpeaks
 ```
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T2/pics/20.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H2/pics/20.png?raw=true)
 
 ## [Runinterval ja sen konfigurointi](https://ask.puppet.com/question/2451/how-do-you-change-the-runinterval/)
 
@@ -488,7 +488,7 @@ runinterval = 10
 
 jolloin orja hakee master tietokoneelta sille jaetut tiedostot joka 10 sekunti
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T2/pics/21.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H2/pics/21.png?raw=true)
 
 Muutosten jälkeen CTRL + X, save changes? Y ja enter.
 
@@ -498,7 +498,7 @@ Tallennettuani muutokset tarkistin että se on tallentunut oikein, seuraavalla k
 sudo puppet agent --configprint runinterval
 ```
 
-![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/T2/pics/22.png)
+![alt text](https://github.com/siavonen/Puppet-master/blob/master/harjoitukset/H2/pics/22.png?raw=true)
 
 ## Lähteet
 
